@@ -1,0 +1,5 @@
+{
+    "java.compile.nullAnalysis.mode": "automatic",
+    "java.integrated.defaultProfile.windows":"Command Prompt",
+    "java.configuration.updateBuildConfiguration": "interactive"
+}
