@@ -18,14 +18,14 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = User.TABLE_NAME)
+@Table(name = "user")
 
 public class User{
 
     public interface CreateUser{}
     public interface UpdateUser{}
 
-    public static final String TABLE_NAME = "user";
+    public static final String TABLE_NAME = "user";// deu BO no banco de dados
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,10 +40,10 @@ public class User{
     private String username;
 
 
-    //@JsonProperty(access = access.WRITE_ONLY)
+    //@JsonProperty(access = Access.WRITE_ONLY)
     @Column(name = "password", length = 60, nullable = false)
     @NotEmpty(groups = {CreateUser.class,UpdateUser.class})
-    @NotNull(groups = {CreateUser.class,UpdateUser.class}
+    @NotNull(groups = {CreateUser.class,UpdateUser.class})
     @Size(groups = {CreateUser.class, UpdateUser.class},min = 8, max = 60)
     private String password;
 
