@@ -1,5 +1,7 @@
 package com.leomatias.todosimple.models;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import org.antlr.v4.runtime.misc.ObjectEqualityComparator;
@@ -12,13 +14,14 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "user")
+@Table(name = User.TABLE_NAME)
 
 public class User{
 
@@ -47,7 +50,9 @@ public class User{
     @Size(groups = {CreateUser.class, UpdateUser.class},min = 8, max = 60)
     private String password;
 
-    //private List<Task> tasks = new ArrayList<Task>();
+
+    @OneToMany(mappedBy = "user")
+    private List<task> tasks = new ArrayList<task>();
 
     public User(){        
     }
@@ -83,6 +88,25 @@ public class User{
     {
         this.password = password;
     }
+
+
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public List<task> getTasks() {
+        return this.tasks;
+    }
+
+    public void setTasks(List<task> tasks) {
+        this.tasks = tasks;
+    }
+
 
 
     @Override
